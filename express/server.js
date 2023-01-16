@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 
 const router = express.Router();
 router.post("/card-info", (req, res) => {
+  console.log("/card-info", JSON.stringify(req.body));
   res.json({
     IsSuccess: true,
     Balance: 10.0,
@@ -15,6 +16,7 @@ router.post("/card-info", (req, res) => {
 });
 
 router.post("/activate", (req, res) => {
+  console.log("/activate", JSON.stringify(req.body));
   res.json({
     IsSuccess: true,
     Balance: 10.0,
@@ -24,6 +26,7 @@ router.post("/activate", (req, res) => {
 });
 
 router.post("/issue", (req, res) => {
+  console.log("/issue", JSON.stringify(req.body));
   res.json({
     CardIdentifier: "MYFIRSTCARD", // BackendID of the Eva Product
     CurrencyID: "EUR",
@@ -32,6 +35,7 @@ router.post("/issue", (req, res) => {
 });
 
 router.post("/cancel", (req, res) => {
+  console.log("/cancel", JSON.stringify(req.body));
   res.json({
     IsSuccess: true,
     TransactionID: req.body.TransactionID,
@@ -40,6 +44,7 @@ router.post("/cancel", (req, res) => {
 });
 
 router.post("/purchase", (req, res) => {
+  console.log("/purchase", JSON.stringify(req.body));
   res.json({
     IsSuccess: true,
     Balance: 0.0,
@@ -49,6 +54,7 @@ router.post("/purchase", (req, res) => {
 });
 
 router.post("/refund", (req, res) => {
+  console.log("/refund", JSON.stringify(req.body));
   res.json({
     IsSuccess: true,
     Balance: 5.0,
@@ -56,7 +62,10 @@ router.post("/refund", (req, res) => {
     TransactionDate: "2021-10-30 12:00:22",
   });
 });
-router.post("/", (req, res) => res.json({ postBody: req.body }));
+router.post("/", (req, res) => {
+  console.log("/", JSON.stringify(req.body));
+  res.json({ postBody: req.body });
+});
 
 app.use(bodyParser.json());
 app.use("/.netlify/functions/server", router); // path must route to lambda
